@@ -1,0 +1,6 @@
+# staking contract address
+0x9093eD3965c44D3D86916fe92952A300a4D04F5C
+# nft KryptoPunks
+0xA2772Ce4e3Cd7Dd8C3e1522Ba5889018FF4f85D0
+# nft KryptoPunksToken
+0xf300e73Ea0CDdeAfa3692Fe95937fa1751f3E365
