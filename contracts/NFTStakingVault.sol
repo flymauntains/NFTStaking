@@ -221,10 +221,15 @@ contract NFTStakingVault is IERC721Receiver {
     /// @dev uses same reward formula implemented in "_claim"
     /// @param _tokenId id of the token for which reward calculation is needed
     /// @return rewardEarned reward accrued by _tokenId
+
     function getRewardEarnedPerNft(
         uint256 _tokenId
     ) external view returns (uint256 rewardEarned) {
-        uint256 _stakedAt = uint256(vault[_tokenId].stakedAt);
+        Stake memory staked = vault[_tokenId];
+        if (staked.owner == address(0)) {
+            return 0; // Token ID is not staked
+        }
+        uint256 _stakedAt = uint256(staked.stakedAt);
         uint256 stakingPeriod = block.timestamp - _stakedAt;
         uint256 _dailyReward = _calculateReward(stakingPeriod);
         rewardEarned = (_dailyReward * stakingPeriod * 1e18) / 1 days;
